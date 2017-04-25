@@ -14,14 +14,12 @@ it('should not allow anonymous user', async () => {
         name: "Example value"
         likesCount: "Example value"
         url: "Example value"
-        active: "Example value"
       }) {
         businessEdge {
           node {
             name
             likesCount
             url
-            active
           }
         }
       }
@@ -51,14 +49,12 @@ it('should create a record on database', async () => {
         name: "Example value"
         likesCount: "Example value"
         url: "Example value"
-        active: "Example value"
       }) {
         businessEdge {
           node {
             name
             likesCount
             url
-            active
           }
         }
       }

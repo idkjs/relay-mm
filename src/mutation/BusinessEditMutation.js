@@ -5,7 +5,6 @@ import {
   GraphQLNonNull,
   GraphQLID,
   GraphQLInt,
-  GraphQLBoolean,
 } from 'graphql';
 import {
   mutationWithClientMutationId,
@@ -32,9 +31,6 @@ export default mutationWithClientMutationId({
     url: {
       type: new GraphQLNonNull(GraphQLString),
     },
-    active: {
-      type: GraphQLBoolean,
-    },
   },
   mutateAndGetPayload: async (args, { user }) => {
     // Verify if user is authorized
@@ -47,7 +43,6 @@ export default mutationWithClientMutationId({
       name,
       likesCount,
       url,
-      active,
     } = args;
 
     // Check if the provided ID is valid
@@ -65,7 +60,6 @@ export default mutationWithClientMutationId({
       name,
       likesCount,
       url,
-      active,
     });
 
     // TODO: mutation logic

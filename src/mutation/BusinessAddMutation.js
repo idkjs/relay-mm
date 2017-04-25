@@ -3,7 +3,6 @@
 import {
   GraphQLString,
   GraphQLInt,
-  GraphQLBoolean,
   GraphQLNonNull,
 } from 'graphql';
 import {
@@ -30,9 +29,6 @@ export default mutationWithClientMutationId({
     url: {
       type: new GraphQLNonNull(GraphQLString),
     },
-    active: {
-      type: GraphQLBoolean,
-    },
   },
   mutateAndGetPayload: async (args, { user }) => {
     // Verify if user is authorized
@@ -44,7 +40,6 @@ export default mutationWithClientMutationId({
       name,
       likesCount,
       url,
-      active,
     } = args;
 
     // Create new record
@@ -52,7 +47,6 @@ export default mutationWithClientMutationId({
       name,
       likesCount,
       url,
-      active,
     }).save();
 
     // TODO: mutation logic

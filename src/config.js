@@ -11,8 +11,8 @@ dotenvSafe.load({
 });
 
 // Database Settings
-const dBdevelopment = 'mongodb://localhost/database';
-const dBproduction = 'mongodb://localhost/database';
+const dBdevelopment = 'mongodb://localhost/relayql';
+const dBproduction = 'mongodb://localhost/relayql';
 
 // Test Database Settings
 // const test = 'mongodb://localhost/awesome-test';

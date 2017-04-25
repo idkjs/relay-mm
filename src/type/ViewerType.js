@@ -14,8 +14,10 @@ import {
 import { NodeInterface } from '../interface/NodeInterface';
 
 import UserType from './UserType';
-import { UserLoader } from '../loader';
+import BusinessType from './BusinessType';
+import { UserLoader, BusinessLoader } from '../loader';
 import UserConnection from '../connection/UserConnection';
+import BusinessConnection from '../connection/BusinessConnection';
 
 export default new GraphQLObjectType({
   name: 'Viewer',
@@ -47,6 +49,28 @@ export default new GraphQLObjectType({
         },
       },
       resolve: (obj, args, context) => UserLoader.loadUsers(context, args),
+    },
+    business: {
+      type: BusinessType,
+      args: {
+        id: {
+          type: new GraphQLNonNull(GraphQLID),
+        },
+      },
+      resolve: (obj, args, context) => {
+        const { id } = fromGlobalId(args.id);
+        return BusinessLoader.load(context, id);
+      },
+    },
+    businesses: {
+      type: BusinessConnection.connectionType,
+      args: {
+        ...connectionArgs,
+        search: {
+          type: GraphQLString,
+        },
+      },
+      resolve: (obj, args, context) => BusinessLoader.loadBusinesses(context, args),
     },
   }),
   interfaces: () => [NodeInterface],

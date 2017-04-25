@@ -15,16 +15,12 @@ const Schema = new mongoose.Schema({
     required: true,
     index: true,
   },
-  active: {
-    type: Boolean,
-    default: true,
-  },
 }, {
   timestamps: {
     createdAt: 'createdAt',
     updatedAt: 'updatedAt',
   },
-  collection: 'user',
+  collection: 'businesses',
 });
 
 export default mongoose.model('Business', Schema);

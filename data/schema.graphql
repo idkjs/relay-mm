@@ -1,3 +1,32 @@
+# Represents Business
+type Business implements Node {
+  # The ID of an object
+  id: ID!
+  name: String
+  likesCount: Int
+  url: String
+  createdAt: String
+  updatedAt: String
+}
+
+# A connection to a list of items.
+type BusinessConnection {
+  # Information to aid in pagination.
+  pageInfo: PageInfo!
+
+  # A list of edges.
+  edges: [BusinessEdge]
+}
+
+# An edge in a connection.
+type BusinessEdge {
+  # The item at the end of the edge
+  node: Business
+
+  # A cursor for use in pagination
+  cursor: String!
+}
+
 input ChangePasswordInput {
   oldPassword: String!
 
@@ -110,4 +139,6 @@ type Viewer implements Node {
   me: User
   user(id: ID!): User
   users(after: String, first: Int, before: String, last: Int, search: String): UserConnection
+  business(id: ID!): Business
+  businesses(after: String, first: Int, before: String, last: Int, search: String): BusinessConnection
 }
