@@ -31,6 +31,9 @@ export default mutationWithClientMutationId({
     url: {
       type: new GraphQLNonNull(GraphQLString),
     },
+    business_id: {
+      type: new GraphQLNonNull(GraphQLString),
+    },
   },
   mutateAndGetPayload: async (args, { user }) => {
     // Verify if user is authorized
@@ -43,6 +46,7 @@ export default mutationWithClientMutationId({
       name,
       likesCount,
       url,
+      business_id,
     } = args;
 
     // Check if the provided ID is valid
@@ -60,6 +64,7 @@ export default mutationWithClientMutationId({
       name,
       likesCount,
       url,
+      business_id,
     });
 
     // TODO: mutation logic

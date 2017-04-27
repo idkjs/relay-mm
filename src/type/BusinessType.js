@@ -29,6 +29,11 @@ export default new GraphQLObjectType({
       description: '',
       resolve: obj => obj.url,
     },
+    business_id: {
+      type: GraphQLString,
+      description: '',
+      resolve: obj => obj.business_id,
+    },
     createdAt: {
       type: GraphQLString,
       description: '',

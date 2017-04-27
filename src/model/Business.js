@@ -15,6 +15,11 @@ const Schema = new mongoose.Schema({
     required: true,
     index: true,
   },
+  business_id: {
+    type: String,
+    required: true,
+    index: true,
+  },
 }, {
   timestamps: {
     createdAt: 'createdAt',

@@ -5,6 +5,7 @@ type Business implements Node {
   name: String
   likesCount: Int
   url: String
+  business_id: String
   createdAt: String
   updatedAt: String
 }
