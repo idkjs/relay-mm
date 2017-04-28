@@ -16,7 +16,7 @@ import { NodeInterface } from '../interface/NodeInterface';
 import UserType from './UserType';
 import BusinessType from './BusinessType';
 import ReviewType from './ReviewType';
-import { UserLoader, BusinessLoader, ReviewLoader } from '../loader';
+import { ReviewLoader, UserLoader, BusinessLoader } from '../loader';
 import UserConnection from '../connection/UserConnection';
 import BusinessConnection from '../connection/BusinessConnection';
 import ReviewConnection from '../connection/ReviewConnection';

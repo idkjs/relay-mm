@@ -20,6 +20,9 @@ const Schema = new mongoose.Schema({
     required: true,
     index: true,
   },
+  reviews: {
+    type: Array,
+  },
 }, {
   timestamps: {
     createdAt: 'createdAt',

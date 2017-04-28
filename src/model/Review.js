@@ -2,6 +2,7 @@ import mongoose from 'mongoose';
 
 // Defining a schema for Business
 const Schema = new mongoose.Schema({
+
   review_id: {
     type: String,
     required: true,
@@ -40,7 +41,7 @@ const Schema = new mongoose.Schema({
     createdAt: 'createdAt',
     updatedAt: 'updatedAt',
   },
-  collection: 'businesses',
+  collection: 'reviews',
 });
 
 export default mongoose.model('Review', Schema);

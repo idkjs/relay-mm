@@ -49,9 +49,9 @@ export default class Review {
     this.createdAt = data.createdAt;
     this.updatedAt = data.updatedAt;
   }
+
   static getLoader = () => new DataLoader(
-    // _id is not exported from ReviewModel but mongoose should export by default
-    ids => Promise.all(ids.map(id => ReviewModel.findOne({ _id: id }))),
+    ids => Promise.all(ids.map(id => ReviewModel.findOne({ _id: id })))
   );
 
   static viewerCanSee(viewer, data) {

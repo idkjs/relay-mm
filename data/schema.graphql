@@ -8,6 +8,9 @@ type Business implements Node {
   business_id: String
   createdAt: String
   updatedAt: String
+
+  # list of reviews for this business
+  reviews: [Review]
 }
 
 # A connection to a list of items.
@@ -104,6 +107,40 @@ type RegisterEmailPayload {
   clientMutationId: String
 }
 
+# Represents Review
+type Review implements Node {
+  # The ID of an object
+  id: ID!
+  review_id: String
+  user_id: String
+  business_id: String
+  date: String
+  text: String
+  useful: Int
+  funny: Int
+  cool: Int
+  createdAt: String
+  updatedAt: String
+}
+
+# A connection to a list of items.
+type ReviewConnection {
+  # Information to aid in pagination.
+  pageInfo: PageInfo!
+
+  # A list of edges.
+  edges: [ReviewEdge]
+}
+
+# An edge in a connection.
+type ReviewEdge {
+  # The item at the end of the edge
+  node: Review
+
+  # A cursor for use in pagination
+  cursor: String!
+}
+
 # User data
 type User implements Node {
   # The ID of an object
@@ -142,4 +179,6 @@ type Viewer implements Node {
   users(after: String, first: Int, before: String, last: Int, search: String): UserConnection
   business(id: ID!): Business
   businesses(after: String, first: Int, before: String, last: Int, search: String): BusinessConnection
+  review(id: ID!): Review
+  reviews(after: String, first: Int, before: String, last: Int, search: String): ReviewConnection
 }

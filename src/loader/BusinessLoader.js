@@ -14,6 +14,7 @@ type BusinessType = {
   business_id: string,
   createdAt: string,
   updatedAt: string,
+  reviews: [],
 }
 
 export default class Business {
@@ -25,6 +26,7 @@ export default class Business {
   business_id: string;
   createdAt: string;
   updatedAt: string;
+  reviews: [];
 
   constructor(data: BusinessType) {
     this.id = data.id;
@@ -35,6 +37,7 @@ export default class Business {
     this.business_id = data.business_id;
     this.createdAt = data.createdAt;
     this.updatedAt = data.updatedAt;
+    this.reviews = () => data.reviews;
   }
 
   static getLoader = () => new DataLoader(
