@@ -5,8 +5,12 @@ import {
   GraphQLString,
   GraphQLInt,
 } from 'graphql';
-import { globalIdField } from 'graphql-relay';
-
+import {
+  connectionArgs,
+  globalIdField,
+} from 'graphql-relay';
+import { ReviewLoader } from '../loader';
+import ReviewConnection from '../connection/ReviewConnection';
 import { NodeInterface } from '../interface/NodeInterface';
 
 export default new GraphQLObjectType({
@@ -43,6 +47,14 @@ export default new GraphQLObjectType({
       type: GraphQLString,
       description: '',
       resolve: obj => obj.updatedAt.toISOString(),
+    },
+    reviews: {
+      type: ReviewConnection.connectionType,
+      description: 'reviews for this business',
+      args: {
+        ...connectionArgs,
+      },
+      resolve: (args, context) => ReviewLoader.loadReviews(context, args.business_id),
     },
   }),
   interfaces: () => [NodeInterface],

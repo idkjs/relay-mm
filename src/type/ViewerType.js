@@ -15,9 +15,11 @@ import { NodeInterface } from '../interface/NodeInterface';
 
 import UserType from './UserType';
 import BusinessType from './BusinessType';
-import { UserLoader, BusinessLoader } from '../loader';
+import ReviewType from './ReviewType';
+import { UserLoader, BusinessLoader, ReviewLoader } from '../loader';
 import UserConnection from '../connection/UserConnection';
 import BusinessConnection from '../connection/BusinessConnection';
+import ReviewConnection from '../connection/ReviewConnection';
 
 export default new GraphQLObjectType({
   name: 'Viewer',
@@ -71,6 +73,28 @@ export default new GraphQLObjectType({
         },
       },
       resolve: (obj, args, context) => BusinessLoader.loadBusinesses(context, args),
+    },
+    review: {
+      type: ReviewType,
+      args: {
+        id: {
+          type: new GraphQLNonNull(GraphQLID),
+        },
+      },
+      resolve: (obj, args, context) => {
+        const { id } = fromGlobalId(args.id);
+        return ReviewLoader.load(context, id);
+      },
+    },
+    reviews: {
+      type: ReviewConnection.connectionType,
+      args: {
+        ...connectionArgs,
+        search: {
+          type: GraphQLString,
+        },
+      },
+      resolve: (obj, args, context) => ReviewLoader.loadReviews(context, args),
     },
   }),
   interfaces: () => [NodeInterface],

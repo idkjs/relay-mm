@@ -35,7 +35,12 @@ const Schema = new mongoose.Schema({
     type: Number,
     required: true,
   },
-  collection: 'reviews',
+}, {
+  timestamps: {
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt',
+  },
+  collection: 'businesses',
 });
 
 export default mongoose.model('Review', Schema);
