@@ -2,7 +2,6 @@ import mongoose from 'mongoose';
 
 // Defining a schema for Business
 const Schema = new mongoose.Schema({
-
   review_id: {
     type: String,
     required: true,

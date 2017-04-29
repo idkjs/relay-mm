@@ -4,15 +4,17 @@ import {
   GraphQLObjectType,
   GraphQLString,
   GraphQLInt,
-  GraphQLList,
+  // GraphQLList,
 } from 'graphql';
+
 import {
-  // connectionArgs,
+  connectionArgs,
   globalIdField,
 } from 'graphql-relay';
-import Review from './ReviewType';
-// import { ReviewLoader } from '../loader';
-// import ReviewConnection from '../connection/ReviewConnection';
+
+// import Review from './ReviewType';
+import { ReviewLoader } from '../loader';
+import ReviewConnection from '../connection/ReviewConnection';
 // import BusinessConnection from '../connection/BusinessConnection';
 import { NodeInterface } from '../interface/NodeInterface';
 
@@ -52,8 +54,14 @@ export default new GraphQLObjectType({
       resolve: obj => obj.updatedAt.toISOString(),
     },
     reviews: {
-      type: new GraphQLList(Review),
-      description: 'list of reviews for this business',
+      type: ReviewConnection.connectionType,
+      args: {
+        ...connectionArgs,
+        search: {
+          type: GraphQLString,
+        },
+      },
+      resolve: (obj, args, context) => ReviewLoader.loadReviews(context, args),
     },
   }),
   interfaces: () => [NodeInterface],

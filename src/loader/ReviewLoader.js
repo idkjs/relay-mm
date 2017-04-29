@@ -2,9 +2,9 @@
 // @flow
 
 import DataLoader from 'dataloader';
-import { Review as ReviewModel } from '../model';
+// import { Review as ReviewModel } from '../model';
 import ConnectionFromMongoCursor from '../connection/ConnectionFromMongoCursor';
-// import ReviewModel from '../model/Review';
+import ReviewModel from '../model/Review';
 
 type ReviewType = {
   id: string,
